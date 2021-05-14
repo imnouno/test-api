@@ -9,7 +9,7 @@ const table = base("Activities");
 exports.getAllActivities = async (req, res) => {
   try {
     const activities = await table.select().firstPage();
-    res.send(activities);
+    res.send(activities.map((activity) => activity._rawJson));
   } catch (err) {
     res.status(err.status).send({ err });
   }
